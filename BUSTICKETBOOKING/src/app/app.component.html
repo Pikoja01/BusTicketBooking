@@ -1,2 +1,134 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(171 177 183) !important;">
+  <div class="container">
+    <a class="navbar-brand" href="/bus-booking-angular-18/search">
+      <img src="https://s3.rdbuz.com/Images/rdc/rdc-redbus-logo.webp" alt="abhibus" style="width: 5rem;">
+    </a>
+    <div class="d-flex flex-column justify-content-center"><span>Trusted by</span>
+      <span class="font-weight-bold">5 Crore+ Travellers</span>
+    </div>
+      <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+      <div id="navbarNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a routerlinkactive="router-link-active" class="nav-link" href="/bus-booking-angular-18/search"><i class="icon bi bi-bus"></i>Buses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-train"></i>Trains</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-airplane"></i>Flights</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-building"></i>Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-gift"></i>Offers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-ticket-perforated"></i>Track Ticket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="icon bi bi-headset"></i>Need Help?</a>
+          </li>
+          @if (loggedUserData) {
+            <li class="nav-item">
+              <a class="nav-link text-success"><i class="icon bi bi-person"></i>{{loggedUserData.userName}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" (click)="logOff()"><i class="icon bi bi-person"></i>LOGOFF</a>
+            </li>
+          }@else {
+            <li class="nav-item">
+              <a class="nav-link text-danger" (click)="openModel()"><i class="icon bi bi-person"></i>Login/SignUp</a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 <router-outlet />
+
+<!-- Modal -->
+<div id="myModal" class="modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closeModel()" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        @if(isLoginForm){
+          <form>
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="email" id="form2Example1" class="form-control" name="userName" [(ngModel)]="logIn.userName" />
+              <label class="form-label" for="form2Example1">Email address</label>
+            </div>
+          
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="password" id="form2Example2" class="form-control" name="password" [(ngModel)]="logIn.password" />
+              <label class="form-label" for="form2Example2">Password</label>
+            </div>
+          
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+              <div class="col d-flex justify-content-center">
+                <!-- Checkbox -->
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                  <label class="form-check-label" for="form2Example31"> Remember me </label>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Submit button -->
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" (click)="onLogin()">Sign in</button>
+          
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Not a member? <a (click)="isLoginForm = false">Register</a></p>
+            </div>
+          </form>
+        } @else{
+          <form>
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="email" id="form2Example1" name="emailId" [(ngModel)]="registerObject.emailId" class="form-control" />
+              <label class="form-label" for="form2Example1">Email address</label>
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="email" name="userName" [(ngModel)]="registerObject.userName" class="form-control" />
+              <label class="form-label" for="form2Example1">User Name</label>
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="email" name="fullName" [(ngModel)]="registerObject.fullName" class="form-control" />
+              <label class="form-label" for="form2Example1">Full Name</label>
+            </div>
+          
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="password" name="password" [(ngModel)]="registerObject.password" class="form-control" />
+              <label class="form-label" for="form2Example2">Password</label>
+            </div>
+  
+            <!-- Submit button -->
+            <button  type="button" (click)="onRegister()" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Register</button>
+          
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Already a member? <a (click)="isLoginForm = true">Login</a></p>
+            </div>
+          </form>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeModel()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
