@@ -44,4 +44,7 @@ export class MasterService {
     return this.http.post<any[]>(`${this.apiURL}login`, obj)
   }
 
+  onBooking(obj:any){
+    return this.http.post<any[]>(`${this.apiURL}PostBusBooking`, obj)
+  }
 }
