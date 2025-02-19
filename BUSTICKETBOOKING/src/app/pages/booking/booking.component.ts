@@ -4,11 +4,10 @@ import { MasterService } from '../../service/master.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-booking',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './booking.component.html',
-  styleUrl: './booking.component.css'
+    selector: 'app-booking',
+    imports: [FormsModule],
+    templateUrl: './booking.component.html',
+    styleUrl: './booking.component.css'
 })
 export class BookingComponent {
 
